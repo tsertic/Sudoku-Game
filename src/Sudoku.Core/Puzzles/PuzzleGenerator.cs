@@ -23,7 +23,6 @@ public sealed class PuzzleGenerator(Random? random = null)
             var digit = givens[index];
             givens[index] = 0;
 
-            // Only keep a removal if the puzzle still has exactly one solution
             if (SudokuSolver.CountSolutions(givens) != 1)
                 givens[index] = digit;
             else

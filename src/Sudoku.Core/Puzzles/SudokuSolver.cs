@@ -6,7 +6,6 @@ public static class SudokuSolver
     private const int CellCount = Size * Size;
     private const int AllDigits = 0b1_1111_1111;
 
-    /// Counts solutions of the grid, stopping early once the limit is reached.
     public static int CountSolutions(int[] grid, int limit = 2, Random? shuffleWith = null)
     {
         var state = SolverState.From(grid);
@@ -18,7 +17,6 @@ public static class SudokuSolver
         return found;
     }
 
-    /// Fills the grid with the first solution found, or returns null if there is none.
     public static int[]? Solve(int[] grid, Random? shuffleWith = null)
     {
         var state = SolverState.From(grid);

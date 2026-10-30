@@ -8,7 +8,6 @@ public static class ScoreCalculator
     private const double FastestMultiplier = 1.5;
     private const double SlowestMultiplier = 0.25;
 
-    // Finishing exactly at par time earns the base score; faster earns up to 1.5x, slower decays to 0.25x
     public static int Calculate(Difficulty difficulty, TimeSpan duration, int checksUsed)
     {
         var overPar = duration / difficulty.ParTime();
