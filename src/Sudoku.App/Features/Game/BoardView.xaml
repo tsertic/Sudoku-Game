@@ -1,40 +1,51 @@
 <UserControl x:Class="Sudoku.App.Features.Game.BoardView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="2,2,0,0"
-            Width="468" Height="468" Background="{StaticResource GridLineBrush}">
-        <ItemsControl ItemsSource="{Binding Cells}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="9" Columns="9" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border x:Name="cell" BorderThickness="{Binding BorderThickness}"
-                            BorderBrush="{StaticResource GridLineBrush}"
-                            Background="{StaticResource EmptyCellBrush}" Cursor="Hand">
-                        <Border.InputBindings>
-                            <MouseBinding Gesture="LeftClick"
-                                          Command="{Binding DataContext.SelectCellCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                          CommandParameter="{Binding}" />
-                        </Border.InputBindings>
-                        <TextBlock x:Name="digit" Text="{Binding Text}" FontSize="28"
-                                   FontFamily="Segoe UI Semibold" Foreground="#1F55B8"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                    <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding IsGiven}" Value="True">
-                            <Setter TargetName="cell" Property="Background" Value="{StaticResource GivenCellBrush}" />
-                            <Setter TargetName="digit" Property="Foreground" Value="{StaticResource InkBrush}" />
-                            <Setter TargetName="cell" Property="Cursor" Value="Arrow" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                            <Setter TargetName="cell" Property="Background" Value="{StaticResource SelectedCellBrush}" />
-                        </DataTrigger>
-                    </DataTemplate.Triggers>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+    <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" Background="White">
+        <Grid Width="468" Height="468">
+            <ItemsControl ItemsSource="{Binding Cells}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="9" Columns="9" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:Name="cell" BorderThickness="0.5" BorderBrush="{StaticResource InnerLineBrush}"
+                                Background="White" Cursor="Hand">
+                            <Border.InputBindings>
+                                <MouseBinding Gesture="LeftClick"
+                                              Command="{Binding DataContext.SelectCellCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                              CommandParameter="{Binding}" />
+                            </Border.InputBindings>
+                            <TextBlock x:Name="digit" Text="{Binding Text}" FontSize="28"
+                                       FontFamily="Segoe UI Semibold" Foreground="{StaticResource UserDigitBrush}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsGiven}" Value="True">
+                                <Setter TargetName="digit" Property="Foreground" Value="{StaticResource GivenDigitBrush}" />
+                                <Setter TargetName="cell" Property="Cursor" Value="Arrow" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="cell" Property="Background" Value="{StaticResource SelectedCellBrush}" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <UniformGrid Rows="3" Columns="3" IsHitTestVisible="False">
+                <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" />
+                <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" />
+                <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" />
+                <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" />
+                <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" />
+                <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" />
+                <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" />
+                <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" />
+                <Border BorderBrush="{StaticResource GridLineBrush}" BorderThickness="1.5" />
+            </UniformGrid>
+        </Grid>
     </Border>
 </UserControl>

@@ -1,4 +1,3 @@
-using System.Windows;
 using Sudoku.App.Shared;
 
 namespace Sudoku.App.Features.Game;
@@ -13,17 +12,11 @@ public sealed class CellViewModel : ObservableObject
         Index = index;
         Row = index / 9;
         Column = index % 9;
-        BorderThickness = new Thickness(
-            Column % 3 == 0 ? 2 : 0.5,
-            Row % 3 == 0 ? 2 : 0.5,
-            Column == 8 ? 2 : 0,
-            Row == 8 ? 2 : 0);
     }
 
     public int Index { get; }
     public int Row { get; }
     public int Column { get; }
-    public Thickness BorderThickness { get; }
 
     public bool IsGiven { get; private set; }
     public string Text => value == 0 ? string.Empty : value.ToString();

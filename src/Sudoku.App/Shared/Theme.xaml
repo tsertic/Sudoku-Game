@@ -5,10 +5,11 @@
     <SolidColorBrush x:Key="InkBrush" Color="#1B2A47" />
     <SolidColorBrush x:Key="MutedBrush" Color="#5C6B86" />
     <SolidColorBrush x:Key="AccentBrush" Color="#2F6FDE" />
-    <SolidColorBrush x:Key="GivenCellBrush" Color="#C9D5E6" />
-    <SolidColorBrush x:Key="EmptyCellBrush" Color="#FFF8D2" />
-    <SolidColorBrush x:Key="SelectedCellBrush" Color="#FFD84D" />
-    <SolidColorBrush x:Key="GridLineBrush" Color="#1B2A47" />
+    <SolidColorBrush x:Key="GivenDigitBrush" Color="#000000" />
+    <SolidColorBrush x:Key="UserDigitBrush" Color="#4A2FB8" />
+    <SolidColorBrush x:Key="SelectedCellBrush" Color="#FFF1A8" />
+    <SolidColorBrush x:Key="GridLineBrush" Color="#000000" />
+    <SolidColorBrush x:Key="InnerLineBrush" Color="#808080" />
     <SolidColorBrush x:Key="CardBrush" Color="#F7FAFE" />
 
     <Style x:Key="ActionButton" TargetType="Button">
