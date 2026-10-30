@@ -1,0 +1,55 @@
+<Window x:Class="Sudoku.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:game="clr-namespace:Sudoku.App.Features.Game"
+        Title="Sudoku" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen" Background="{StaticResource PageBrush}"
+        FontFamily="Segoe UI" PreviewKeyDown="OnPreviewKeyDown">
+    <Grid Margin="28">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="310" />
+        </Grid.ColumnDefinitions>
+
+        <game:BoardView Grid.Column="0" VerticalAlignment="Top" />
+
+        <StackPanel Grid.Column="1" Margin="28,0,0,0">
+            <TextBlock Text="Sudoku" FontSize="34" FontWeight="SemiBold" Foreground="{StaticResource InkBrush}" />
+            <TextBlock Text="{Binding AverageText}" FontSize="13" Margin="0,2,0,22"
+                       Foreground="{StaticResource MutedBrush}" TextWrapping="Wrap" />
+
+            <TextBlock Text="LEVEL" FontSize="11" FontWeight="SemiBold" Margin="0,0,0,6"
+                       Foreground="{StaticResource MutedBrush}" />
+            <ItemsControl ItemsSource="{Binding Levels}" Margin="-4,0,0,0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}" Style="{StaticResource LevelButton}"
+                                Command="{Binding DataContext.SelectDifficultyCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                CommandParameter="{Binding Level}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="{Binding TimerText}" FontSize="48" FontFamily="Consolas" Margin="0,22,0,2"
+                       Foreground="{StaticResource InkBrush}" />
+            <TextBlock Text="{Binding StatusText}" FontSize="14" MinHeight="40" TextWrapping="Wrap"
+                       Foreground="{StaticResource AccentBrush}" />
+
+            <Button Content="How am I doing?" Command="{Binding CheckCommand}" Margin="0,16,0,8"
+                    Style="{StaticResource ActionButton}" />
+            <Button Content="Show solution" Command="{Binding ShowSolutionCommand}" Margin="0,0,0,8"
+                    Style="{StaticResource ActionButton}" />
+            <Button Content="Clear" Command="{Binding ClearCommand}" Margin="0,0,0,8"
+                    Style="{StaticResource ActionButton}" />
+            <Button Content="New game" Command="{Binding NewGameCommand}" Margin="0,0,0,8"
+                    Style="{StaticResource ActionButton}" />
+            <Button Content="Scores" Command="{Binding ShowScoresCommand}"
+                    Style="{StaticResource ActionButton}" />
+        </StackPanel>
+    </Grid>
+</Window>
